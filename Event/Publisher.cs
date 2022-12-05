@@ -2,21 +2,21 @@
 namespace Event
 {
     internal class Publisher
-    {
+    { 
 
     }
 
-    //we are going to create a laptop class and see what happens when we press different keys
 
+    //we are going to create a laptop class and see what happens when we press different keys
     public class laptop
     {
         List<char> Keys = new() { 'A', 'S', 'D', 'F', 'G', 'I','O' };
 
         int _batteryLevel = 0;
 
-        event Action<string> Click;
-        event Action<string> AlertLowBattery;
-        event Action<string> ShutDown;
+        event Action<string>? Click;
+        event Action<string>? AlertLowBattery;
+        event Action<string>? ShutDown;
 
         public void AddClickMethod(Action<string> method)
         {
@@ -41,12 +41,12 @@ namespace Event
         {
             foreach (var character in message)
             {
-                if (_batteryLevel < 4)
+                if (_batteryLevel < LowBatteryLevel)
                 {
                     //low battery
                     OnAlertLowBattery("Battery Low\nPlug in laptop");
                 }
-                if (_batteryLevel == 0)
+                if (_batteryLevel == ShutDownBatteryLevel)
                 {
                     //shutdown
                     OnShutDown("Bye-Bye");
